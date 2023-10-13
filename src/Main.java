@@ -1,138 +1,133 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+
 public class Main {
     private static Employee[] employeeDataArchive = new Employee[10];
+
     public static void main(String[] args) {
-
         employeeDataArchive();
-
         task1();
     }
+
     public static int departmentNumberGenerator() {
         java.util.Random random = new java.util.Random();
-        int[] arr = new int[1];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = random.nextInt(5) + 1;
-        }
-        int departmentNumberGenerator = arr[0];
+        int minimumScore = 1;
+        int departmentNumberGenerator = random.nextInt(5) + minimumScore;
         return departmentNumberGenerator;
     }
+
     public static int salaryValueGenerator() {
         java.util.Random random = new java.util.Random();
-        int[] arr = new int[1];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = random.nextInt(100_000) + 100_000;
-        }
-        int salaryValueGenerator = arr[0];
+        int minimumScore = 100_000;
+        int salaryValueGenerator = random.nextInt(300_000) + minimumScore;
         return salaryValueGenerator;
     }
-    public static Employee [] employeeDataArchive() {
-//    public static void Employee [] employeeDataArchive() {
 
-        Employee employee1 = new Employee("Иванов", "Иван", "Иванович", departmentNumberGenerator(), salaryValueGenerator());
-        Employee employee2 = new Employee("Петров", "Пётр", "Петрович", departmentNumberGenerator(), salaryValueGenerator());
-        Employee employee3 = new Employee("Новая", "Мария", "Олеговна", departmentNumberGenerator(), salaryValueGenerator());
-        Employee employee4 = new Employee("Симонов", "Тимофей", "Трифонович", departmentNumberGenerator(), salaryValueGenerator());
-        Employee employee5 = new Employee("Виноградова", "Анастасия", "Викторовна", departmentNumberGenerator(), salaryValueGenerator());
-        Employee employee6 = new Employee("Неизвестный", "Никита", "Константинович", departmentNumberGenerator(), salaryValueGenerator());
-        Employee employee7 = new Employee("Громыко", "Павел", "Ханович", departmentNumberGenerator(), salaryValueGenerator());
-        Employee employee8 = new Employee("Ким", "Юрий", "Леонидович", departmentNumberGenerator(), salaryValueGenerator());
-        Employee employee9 = new Employee("Великий", "Антон", "Александрович", departmentNumberGenerator(), salaryValueGenerator());
-        Employee employee10 = new Employee("Крымская", "Маргарита", "Вячеславовна", departmentNumberGenerator(), salaryValueGenerator());
-
-//        Employee[] employeeDataArchive = new Employee[10];
-        employeeDataArchive[0] = employee1;
-        employeeDataArchive[1] = employee2;
-        employeeDataArchive[2] = employee3;
-        employeeDataArchive[3] = employee4;
-        employeeDataArchive[4] = employee5;
-        employeeDataArchive[5] = employee6;
-        employeeDataArchive[6] = employee7;
-        employeeDataArchive[7] = employee8;
-        employeeDataArchive[8] = employee9;
-        employeeDataArchive[9] = employee10;
+    public static List<Employee> employeeDataArchive() {
+        List<Employee> employeeDataArchive = new ArrayList<>(Arrays.asList(
+                new Employee("Иванов", "Иван", "Иванович", departmentNumberGenerator(), salaryValueGenerator()),
+                new Employee("Петров", "Пётр", "Петрович", departmentNumberGenerator(), salaryValueGenerator()),
+                new Employee("Новая", "Мария", "Олеговна", departmentNumberGenerator(), salaryValueGenerator()),
+                new Employee("Симонов", "Тимофей", "Трифонович", departmentNumberGenerator(), salaryValueGenerator()),
+                new Employee("Виноградова", "Анастасия", "Викторовна", departmentNumberGenerator(), salaryValueGenerator()),
+                new Employee("Неизвестный", "Никита", "Константинович", departmentNumberGenerator(), salaryValueGenerator()),
+                new Employee("Громыко", "Павел", "Ханович", departmentNumberGenerator(), salaryValueGenerator()),
+                new Employee("Ким", "Юрий", "Леонидович", departmentNumberGenerator(), salaryValueGenerator()),
+                new Employee("Великий", "Антон", "Александрович", departmentNumberGenerator(), salaryValueGenerator()),
+                new Employee("Крымская", "Маргарита", "Вячеславовна", departmentNumberGenerator(), salaryValueGenerator())));
 
         return employeeDataArchive;
     }
-    public static void archiveToPrint(Employee[] employees) {
 
-        for (int i = 0; i < employees.length; i++) {
-            System.out.println("employees = " + employees[i]);
+    public static void archiveToPrint(List<Employee> employees) {
+
+        for (int i = 0; i < employees.size(); i++) {
+            System.out.println("employees = " + employees.get(i));
         }
     }
-    public static void employeeWithMaxSalary(int selectedDepartment, Employee[] employeeDataArchive) {
+
+    public static void employeeWithMaxSalary(int selectedDepartment, List<Employee> employeeDataArchive) {
         int maxSalary = 0;
         int employeeWithMaxSalary = 0;
-        for (int i = 0; i < employeeDataArchive.length; i++) {
-            if (employeeDataArchive[i].getDepartment() == selectedDepartment) {
-                if (employeeDataArchive[i].getSalary() > maxSalary) {
-                    maxSalary = employeeDataArchive[i].getSalary();
+        for (int i = 0; i < employeeDataArchive.size(); i++) {
+            if (employeeDataArchive.get(i).getDepartment() == selectedDepartment) {
+                if (employeeDataArchive.get(i).getSalary() > maxSalary) {
+                    maxSalary = employeeDataArchive.get(i).getSalary();
                     employeeWithMaxSalary = i;
                 }
             }
         }
-        System.out.println("maxSalary = " + maxSalary + " " + employeeDataArchive[employeeWithMaxSalary].getSurname() + " " + employeeDataArchive[employeeWithMaxSalary].getName() + " " + employeeDataArchive[employeeWithMaxSalary].getFatherName());
+        System.out.println("maxSalary = " + maxSalary + " " + employeeDataArchive.get(employeeWithMaxSalary).getSurname() + " " + employeeDataArchive.get(employeeWithMaxSalary).getName() + " " + employeeDataArchive.get(employeeWithMaxSalary).getFatherName());
     }
-    public static void employeeWithMinSalary(int selectedDepartment, Employee[] employeeDataArchive) {
+
+    public static void employeeWithMinSalary(int selectedDepartment, List<Employee> employeeDataArchive) {
         int employeeWithMinSalary = 0;
         int minSalary = 0;
         int salaryIntroduce = 0;
-        for (int i = 0; i < employeeDataArchive.length; i++) {
-            if (employeeDataArchive[i].getDepartment() == selectedDepartment) {
+        for (int i = 0; i < employeeDataArchive.size(); i++) {
+            if (employeeDataArchive.get(i).getDepartment() == selectedDepartment) {
                 salaryIntroduce++;
                 if (salaryIntroduce == 1) {
-                    minSalary = employeeDataArchive[i].getSalary();
+                    minSalary = employeeDataArchive.get(i).getSalary();
                 }
             }
-            if (employeeDataArchive[i].getDepartment() == selectedDepartment) {
-                if (employeeDataArchive[i].getSalary() < minSalary) {
-                    minSalary = employeeDataArchive[i].getSalary();
+            if (employeeDataArchive.get(i).getDepartment() == selectedDepartment) {
+                if (employeeDataArchive.get(i).getSalary() < minSalary) {
+                    minSalary = employeeDataArchive.get(i).getSalary();
                 }
                 employeeWithMinSalary = i;
             }
         }
-        System.out.println("minSalary = " + minSalary + " " + employeeDataArchive[employeeWithMinSalary].getSurname() + " " + employeeDataArchive[employeeWithMinSalary].getName() + " " + employeeDataArchive[employeeWithMinSalary].getFatherName());
+        System.out.println("minSalary = " + minSalary + " " + employeeDataArchive.get(employeeWithMinSalary).getSurname() + " " + employeeDataArchive.get(employeeWithMinSalary).getName() + " " + employeeDataArchive.get(employeeWithMinSalary).getFatherName());
     }
-    public static void sumSalary(int selectedDepartment, Employee[] employeeDataArchive) {
+
+    public static void sumSalary(int selectedDepartment, List<Employee> employeeDataArchive) {
         int sumSalary = 0;
         int salaryIntroduce = 0;
-        for (int i = 0; i < employeeDataArchive.length; i++) {
-            if (employeeDataArchive[i].getDepartment() == selectedDepartment) {
-                sumSalary = sumSalary + employeeDataArchive[i].getSalary();
+        for (int i = 0; i < employeeDataArchive.size(); i++) {
+            if (employeeDataArchive.get(i).getDepartment() == selectedDepartment) {
+                sumSalary = sumSalary + employeeDataArchive.get(i).getSalary();
                 salaryIntroduce++;
             }
-            if (i == employeeDataArchive.length - 1) {
+            if (i == employeeDataArchive.size() - 1) {
                 System.out.println("sumSalary = " + sumSalary);
                 if (salaryIntroduce > 0) {
                     System.out.println("sumSalaryAverage = " + sumSalary / salaryIntroduce);
-                } else System.out.println("Для расчёта средней зарплаты отдела, нужно наличие хотя бы одного сотрудника в отделе");
+                } else
+                    System.out.println("Для расчёта средней зарплаты отдела, нужно наличие хотя бы одного сотрудника в отделе");
             }
         }
     }
-    public static void salaryIndexation(int salaryIndexation, int selectedDepartment, Employee[] employeeDataArchive) {
+
+    public static void salaryIndexation(int salaryIndexation, int selectedDepartment, List<Employee> employeeDataArchive) {
         System.out.println("Индексация зарплаты на " + salaryIndexation + " процентов:");
         int salaryIntroduce = 0;
-        for (int i = 0; i < employeeDataArchive.length; i++) {
-            if (employeeDataArchive[i].getDepartment() == selectedDepartment) {
+        for (int i = 0; i < employeeDataArchive.size(); i++) {
+            if (employeeDataArchive.get(i).getDepartment() == selectedDepartment) {
                 salaryIntroduce++;
-                employeeDataArchive[i].setSalary(employeeDataArchive[i].getSalary() + employeeDataArchive[i].getSalary() * salaryIndexation / 100);
-                System.out.println(employeeDataArchive[i].getSurname() + " " + employeeDataArchive[i].getName() + " " + employeeDataArchive[i].getFatherName() + ", зарплата: " + employeeDataArchive[i].getSalary() + " персональный номер: " + employeeDataArchive[i].getPersonalNumber());
-            } else if (salaryIntroduce == 0 && i == employeeDataArchive.length - 1) System.out.println("Нет сотрудников в отделе, " + selectedDepartment + " чтобы можно было проиндексировать их зарплату");
+                employeeDataArchive.get(i).setSalary(employeeDataArchive.get(i).getSalary() + employeeDataArchive.get(i).getSalary() * salaryIndexation / 100);
+                System.out.println(employeeDataArchive.get(i).getSurname() + " " + employeeDataArchive.get(i).getName() + " " + employeeDataArchive.get(i).getFatherName() + ", зарплата: " + employeeDataArchive.get(i).getSalary() + " персональный номер: " + employeeDataArchive.get(i).getPersonalNumber());
+            } else if (salaryIntroduce == 0 && i == employeeDataArchive.size() - 1)
+                System.out.println("Нет сотрудников в отделе, " + selectedDepartment + " чтобы можно было проиндексировать их зарплату");
         }
     }
-    public static void salarySamplingParameter(int salarySamplingParameter, Employee[] employeeDataArchive) {
+
+    public static void salarySamplingParameter(int salarySamplingParameter, List<Employee> employeeDataArchive) {
         int signArchiveSize = 0;
-        for (int i = 0; i < employeeDataArchive.length; i++) {
-            if (employeeDataArchive[i].getSalary() >= salarySamplingParameter) {
+        for (int i = 0; i < employeeDataArchive.size(); i++) {
+            if (employeeDataArchive.get(i).getSalary() >= salarySamplingParameter) {
                 signArchiveSize++;
             }
         }
         if (signArchiveSize == 10) {
             int countyIndexMax = 0;
             Object[] salarySamplingParameterMax = new Object[signArchiveSize];
-            for (int i = 0; i < employeeDataArchive.length; i++) {
-                if (employeeDataArchive[i].getSalary() >= salarySamplingParameter) {
+            for (int i = 0; i < employeeDataArchive.size(); i++) {
+                if (employeeDataArchive.get(i).getSalary() >= salarySamplingParameter) {
                     countyIndexMax++;
-                    salarySamplingParameterMax[countyIndexMax - 1] = employeeDataArchive[i];
+                    salarySamplingParameterMax[countyIndexMax - 1] = employeeDataArchive.get(i);
                 }
             }
             System.out.println("Информация о сотрудниках с зарплатой, больше или равной " + salarySamplingParameter + ":");
@@ -142,10 +137,10 @@ public class Main {
         } else if (signArchiveSize == 0) {
             int countyIndexMin = 0;
             Object[] salarySamplingParameterMin = new Object[10 - signArchiveSize];
-            for (int i = 0; i < employeeDataArchive.length; i++) {
-                if (employeeDataArchive[i].getSalary() < salarySamplingParameter) {
+            for (int i = 0; i < employeeDataArchive.size(); i++) {
+                if (employeeDataArchive.get(i).getSalary() < salarySamplingParameter) {
                     countyIndexMin++;
-                    salarySamplingParameterMin[countyIndexMin - 1] = employeeDataArchive[i];
+                    salarySamplingParameterMin[countyIndexMin - 1] = employeeDataArchive.get(i);
                 }
             }
             System.out.println("Информация о сотрудниках с зарплатой, меньше " + salarySamplingParameter + ":");
@@ -155,10 +150,10 @@ public class Main {
         } else if (signArchiveSize > 0 && signArchiveSize != 10) {
             int countyIndexMax = 0;
             Object[] salarySamplingParameterMax = new Object[signArchiveSize];
-            for (int i = 0; i < employeeDataArchive.length; i++) {
-                if (employeeDataArchive[i].getSalary() >= salarySamplingParameter) {
+            for (int i = 0; i < employeeDataArchive.size(); i++) {
+                if (employeeDataArchive.get(i).getSalary() >= salarySamplingParameter) {
                     countyIndexMax++;
-                    salarySamplingParameterMax[countyIndexMax - 1] = employeeDataArchive[i];
+                    salarySamplingParameterMax[countyIndexMax - 1] = employeeDataArchive.get(i);
                 }
             }
             System.out.println("Информация о сотрудниках с зарплатой, больше или равной " + salarySamplingParameter + ":");
@@ -167,10 +162,10 @@ public class Main {
             }
             int countyIndexMin = 0;
             Object[] salarySamplingParameterMin = new Object[10 - signArchiveSize];
-            for (int i = 0; i < employeeDataArchive.length; i++) {
-                if (employeeDataArchive[i].getSalary() < salarySamplingParameter) {
+            for (int i = 0; i < employeeDataArchive.size(); i++) {
+                if (employeeDataArchive.get(i).getSalary() < salarySamplingParameter) {
                     countyIndexMin++;
-                    salarySamplingParameterMin[countyIndexMin - 1] = employeeDataArchive[i];
+                    salarySamplingParameterMin[countyIndexMin - 1] = employeeDataArchive.get(i);
                 }
             }
             System.out.println("Информация о сотрудниках с зарплатой, меньше " + salarySamplingParameter + ":");
@@ -179,10 +174,11 @@ public class Main {
             }
         }
     }
-    public static void task1 () {
+
+    public static void task1() {
         System.out.println("Курсовая работа №1: Повышенная сложность");
 
-        Employee[] employeeDataArchive = employeeDataArchive();
+        List<Employee> employeeDataArchive = employeeDataArchive();
         System.out.println("Данные всех сотрудников, до индексации зарплаты:");
         archiveToPrint(employeeDataArchive);
 
@@ -206,4 +202,3 @@ public class Main {
         salarySamplingParameter(salarySamplingParameter, employeeDataArchive);
     }
 }
-
