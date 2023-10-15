@@ -121,56 +121,65 @@ public class Main {
                 signArchiveSize++;
             }
         }
-        if (signArchiveSize == 10) {
+        if (signArchiveSize == employeeDataArchive.size()) {
             int countyIndexMax = 0;
-            Object[] salarySamplingParameterMax = new Object[signArchiveSize];
+//            Object[] salarySamplingParameterMax = new Object[signArchiveSize];
+            List<Object> salarySamplingParameterMax = new ArrayList<>(Arrays.asList());
             for (int i = 0; i < employeeDataArchive.size(); i++) {
                 if (employeeDataArchive.get(i).getSalary() >= salarySamplingParameter) {
                     countyIndexMax++;
-                    salarySamplingParameterMax[countyIndexMax - 1] = employeeDataArchive.get(i);
+//                    salarySamplingParameterMax.set((i - 1), employeeDataArchive.get(i));
+                    salarySamplingParameterMax.add(employeeDataArchive.get(i));
+//                            [countyIndexMax - 1] = employeeDataArchive.get(i);
                 }
             }
             System.out.println("Информация о сотрудниках с зарплатой, больше или равной " + salarySamplingParameter + ":");
-            for (int i = 0; i < salarySamplingParameterMax.length; i++) {
-                System.out.println("salarySamplingParameterMax[i] = " + salarySamplingParameterMax[i]);
+            for (int i = 0; i < salarySamplingParameterMax.size(); i++) {
+                System.out.println("salarySamplingParameterMax[i] = " + salarySamplingParameterMax.get(i));
             }
         } else if (signArchiveSize == 0) {
             int countyIndexMin = 0;
-            Object[] salarySamplingParameterMin = new Object[10 - signArchiveSize];
+//            Object[] salarySamplingParameterMin = new Object[10 - signArchiveSize];
+            List<Object> salarySamplingParameterMin = new ArrayList<>(Arrays.asList());
             for (int i = 0; i < employeeDataArchive.size(); i++) {
                 if (employeeDataArchive.get(i).getSalary() < salarySamplingParameter) {
                     countyIndexMin++;
-                    salarySamplingParameterMin[countyIndexMin - 1] = employeeDataArchive.get(i);
+//                    salarySamplingParameterMin.set((countyIndexMin - 1), employeeDataArchive.get(i));
+                    salarySamplingParameterMin.add(employeeDataArchive.get(i));
                 }
             }
             System.out.println("Информация о сотрудниках с зарплатой, меньше " + salarySamplingParameter + ":");
-            for (int i = 0; i < salarySamplingParameterMin.length; i++) {
-                System.out.println("salarySamplingParameterMin[i] = " + salarySamplingParameterMin[i]);
+            for (int i = 0; i < salarySamplingParameterMin.size(); i++) {
+                System.out.println("salarySamplingParameterMin[i] = " + salarySamplingParameterMin.get(i));
             }
         } else if (signArchiveSize > 0 && signArchiveSize != 10) {
             int countyIndexMax = 0;
-            Object[] salarySamplingParameterMax = new Object[signArchiveSize];
+//            Object[] salarySamplingParameterMax = new Object[signArchiveSize];
+            List<Object> salarySamplingParameterMax = new ArrayList<>(Arrays.asList());
             for (int i = 0; i < employeeDataArchive.size(); i++) {
                 if (employeeDataArchive.get(i).getSalary() >= salarySamplingParameter) {
                     countyIndexMax++;
-                    salarySamplingParameterMax[countyIndexMax - 1] = employeeDataArchive.get(i);
+//                    salarySamplingParameterMax.set((countyIndexMax - 1), employeeDataArchive.get(i));
+                    salarySamplingParameterMax.add(employeeDataArchive.get(i));
                 }
             }
             System.out.println("Информация о сотрудниках с зарплатой, больше или равной " + salarySamplingParameter + ":");
-            for (int i = 0; i < salarySamplingParameterMax.length; i++) {
-                System.out.println("salarySamplingParameterMax[i] = " + salarySamplingParameterMax[i]);
+            for (int i = 0; i < salarySamplingParameterMax.size(); i++) {
+                System.out.println("salarySamplingParameterMax[i] = " + salarySamplingParameterMax.get(i));
             }
             int countyIndexMin = 0;
-            Object[] salarySamplingParameterMin = new Object[10 - signArchiveSize];
+//            Object[] salarySamplingParameterMin = new Object[10 - signArchiveSize];
+            List<Object> salarySamplingParameterMin = new ArrayList<>(Arrays.asList());
             for (int i = 0; i < employeeDataArchive.size(); i++) {
                 if (employeeDataArchive.get(i).getSalary() < salarySamplingParameter) {
                     countyIndexMin++;
-                    salarySamplingParameterMin[countyIndexMin - 1] = employeeDataArchive.get(i);
+//                    salarySamplingParameterMin.set((countyIndexMin - 1), employeeDataArchive.get(i));
+                    salarySamplingParameterMin.add(employeeDataArchive.get(i));
                 }
             }
             System.out.println("Информация о сотрудниках с зарплатой, меньше " + salarySamplingParameter + ":");
-            for (int i = 0; i < salarySamplingParameterMin.length; i++) {
-                System.out.println("salarySamplingParameterMin[i] = " + salarySamplingParameterMin[i]);
+            for (int i = 0; i < salarySamplingParameterMin.size(); i++) {
+                System.out.println("salarySamplingParameterMin[i] = " + salarySamplingParameterMin.get(i));
             }
         }
     }
